@@ -27,16 +27,17 @@ label{
     display: block; 
     /*Por defecto es inline, block para que ocupe todo el tamaño del contenedor y el input aparezca abajo*/
     margin-bottom: 10px;
+    width: 100%;
 }
 
 input {
-    font-family: 'Poppins', sans-serif;
-    font-weight: bold;
     display: inline;
     width: 236px;
     border:1px solid #ced4da;
     padding:10px;
     border-radius: 0px 5px 5px 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     font-weight: 200;
     font-size: 18px;
 }
@@ -48,6 +49,11 @@ input[type="submit"]{
     border-radius: 5px;
     width: 100%;
 }
+input[type="email"]{
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    width: 278px;
+}
 
 select {
     font-family: 'Poppins', sans-serif;
@@ -55,7 +61,7 @@ select {
     border:1px solid #ced4da;
     border-radius: 5px;
     font-weight: 200;
-    font-size: 10px;
+    font-size: 18px;
 }
 /*IDS*/
 #nicka{
@@ -67,4 +73,5 @@ select {
     padding:10px;
     font-weight: 400;
     font-size: 18px;
+    text-align: center;
 }
