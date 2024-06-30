@@ -1,11 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masterdots game</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
+
 <body>
-    
+    <!------------ CABECERA ------------>
+    <header>
+        <img src="img/logo.png" alt="Logo de Masterdots">
+    </header>
+
+    <!------------ FORMULARIO DE USUARIO ------------>
+    <!--Podría utilizarse article en lugar de main-->
+    <main>
+        <form action="#">
+            <!--Bloque del nombre-->
+            <div class="itemform">
+                <label for="nick">Enter your name: </label>
+                <input type="text" name="nick" id="nick" required>
+            </div>
+            <!--Bloque de formulario del tamaño-->
+            <div class="itemform">
+                <label for="size">Size of the game: </label>
+                <select name="size" id="size">
+                    <option value="">--Please, select a size--</option>
+                    <option value="1">4x4</option>
+                    <option value="2">5x5</option>
+                    <option value="3">6x6</option>
+                </select>
+            </div>
+            <!--Bloque de botón de envío-->
+            <div class="itemform">
+                <input type="submit" value="PLAY">
+            </div>
+        </form>
+    </main>
+
+    <!------------ PIE DE PÁGINA ------------>
+    <footer>
+        <p>Curso FrontEnd HTML, CSS y JS</p>
+    </footer>
 </body>
+
 </html>
