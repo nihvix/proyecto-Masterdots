@@ -4,9 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Masterdots game</title>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <title>Masterdots game</title>
+
 </head>
 
 <body>
@@ -22,6 +28,8 @@
             <!--Bloque del nombre-->
             <div class="itemform">
                 <label for="nick">Enter your name: </label>
+                <input type="text" name="nick" value="@" id="nicka" readonly>
+                <!--readonly para que sea solo lectura y sólo se escriba en el input principal-->
                 <input type="text" name="nick" id="nick" required>
             </div>
             <!--Bloque de formulario del tamaño-->
