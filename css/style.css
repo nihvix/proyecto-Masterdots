@@ -23,8 +23,9 @@ form {
     flex-direction: column;
     row-gap: 20px;
 }
-label{
-    display: block; 
+
+label {
+    display: block;
     /*Por defecto es inline, block para que ocupe todo el tamaño del contenedor y el input aparezca abajo*/
     margin-bottom: 10px;
     width: 100%;
@@ -33,54 +34,66 @@ label{
 input {
     display: inline;
     width: 236px;
-    border:1px solid #ced4da;
-    padding:10px;
+    border: 1px solid #ced4da;
+    padding: 10px;
     border-radius: 0px 5px 5px 0px;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 18px;
 }
+
 /*Especialización del input*/
-input[type="submit"]{
+input[type="submit"] {
     background-color: #fd0c49;
-    color:#fff;
+    color: #fff;
     font-weight: 700;
     border-radius: 5px;
     width: 100%;
 }
-input[type="email"]{
+
+input[type="email"] {
     border: 1px solid #ced4da;
     border-radius: 5px;
     width: 278px;
-    color:#ced4da;
 }
 
 select {
     font-family: 'Poppins', sans-serif;
     width: 100%;
-    border:1px solid #ced4da;
+    border: 1px solid #ced4da;
     border-radius: 5px;
     font-size: 18px;
-    font-weight: 200;
 }
+
 /*IDS*/
-#nicka{
-    float:left;
+#nicka {
+    float: left;
     width: 20px;
     background-color: #ced4da;
-    border:1px solid #ced4da;
+    border: 1px solid #ced4da;
     border-radius: 5px 0px 0px 5px;
-    padding:10px;
+    padding: 10px;
     font-weight: 400;
     font-size: 18px;
     text-align: center;
 }
-#error{
+
+#error {
     text-align: center;
-    color:#fd0c49;
+    color: #fd0c49;
     font-weight: 300;
     font-size: 14px;
     margin-top: 10px;
-    margin-bottom: 10px;;
+    margin-bottom: 10px;
+    ;
+}
+
+#size option[value="0"] {
+    color: #ced4da;
+    /*Para que cuando se abra el menú la opción por defecto se vea gris*/
+}
+::placeholder{
+    color: #ced4da;
+    font-weight: 500;
 }
