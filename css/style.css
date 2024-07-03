@@ -13,7 +13,7 @@ footer {
 
 /*---------- BLOQUE FORMULARIO ----------*/
 main {
-    width: 400px;
+    width: 300px;
     margin: 30px auto 0px auto;
 }
 
@@ -53,6 +53,7 @@ input[type="email"]{
     border: 1px solid #ced4da;
     border-radius: 5px;
     width: 278px;
+    color:#ced4da;
 }
 
 select {

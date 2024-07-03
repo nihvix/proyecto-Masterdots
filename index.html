@@ -26,7 +26,7 @@
     <!--Podría utilizarse article en lugar de main-->
     <main>
         <div>
-            <p id="error">ERROR</p>
+            <p id="error"></p>
         </div>
         <form action="#" id="inputForm">
             <!--Bloque del nombre-->
@@ -34,12 +34,12 @@
                 <label for="nick">Enter your name: </label>
                 <input type="text" name="nick" value="@" id="nicka" readonly>
                 <!--readonly para que sea solo lectura y sólo se escriba en el input principal-->
-                <input type="text" name="nick" id="nick" required>
+                <input type="text" name="nick" id="nick" required minlength="2">
             </div>
             <!--Bloque del correo electrónico-->
             <div class="itemform">
                 <label for="email">Enter your email:</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" value="mymail@gmail.com">
             </div>
             <!--Bloque de formulario del tamaño-->
             <div class="itemform">
