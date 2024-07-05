@@ -1,14 +1,25 @@
-/*
-    Código JS para almacenar la información del usuario
-*/
+/* ==================================================
+                ALMACENAR INFO USUARIO
+   ==================================================*/
 
-//Variable global para almacenar  el nick
+/* ==============================
+        VARIABLES GLOBALES
+   ==============================*/
 var nick;
 var size;
 var email;
 var geolocationTxT;
 
-//Nick será un objeto con la información del input nick
+/* ==============================
+            FUNCIONES
+   ==============================*/
+
+/**
+ * Función para obtener todos los datos del usuario desde la sesión abierta
+ * @param {HTML Element} nickInput 
+ * @param {HTML Element} size 
+ * @param {HTML Element} email 
+ */
 function userData(nickInput, size, email) {
     sessionStorage.setItem("nick", nickInput.value); //"nick" será la clave usada para recuperar la info
     sessionStorage.setItem("size", size.value);
@@ -17,14 +28,20 @@ function userData(nickInput, size, email) {
     // el txt pq los datos de geolocalización se habían almacenado antes
 }
 
+/**
+ * Función para obtener los datos de usuario 
+ */
 function getUserData() {
     nick = sessionStorage.getItem("nick");
     size = sessionStorage.getItem("size");
     email = sessionStorage.getItem("email");
 }
 
-//Función para comprobar que nos meten los datos en el sessionStorage
-//así no se lo pueden saltar poniendo "game.html"
+/**
+ * Función para comprobar que nos meten los datos en el sessionStorage
+ * así no se lo pueden saltar poniendo "game.html"
+ * @returns false/true según  si el formulario se ha completado correctamente
+ */
 function checkUserData() {
     if (nick == null) { //Es decir, no hay SessionStorage
         sessionStorage.setItem("error", "Form not filled correctly!");
@@ -33,31 +50,36 @@ function checkUserData() {
     return true;
 }
 
-//petición geolocalización
-function dataGeolocation(){
-    if(!navigator.geolocation){
-        geolocationTxT="Web browser does NOT support Geolocation API";
-    }else{
+/**
+ * Función para realizar la petición y almacenamiento de la geolocalización del usuario
+ */
+function dataGeolocation() {
+    if (!navigator.geolocation) {
+        geolocationTxT = "Web browser does NOT support Geolocation API";
+    } else {
         //A partir de aquí se empieza a escribir la geolocalización
         navigator.geolocation.getCurrentPosition(
             //Si se consigue correctamente: CALLBACKS(retorno de una petición)
-            (position)=>{geolocationTxT="Latitude: "+position.coords.latitude+", longitude: "+position.coords.longitude;},
+            (position) => { geolocationTxT = "Latitude: " + position.coords.latitude + ", longitude: " + position.coords.longitude; },
 
             //Error
-            ()=>{geolocationTxT="Geolocation couldn't be done correctly.";}
+            () => { geolocationTxT = "Geolocation couldn't be done correctly."; }
         )
 
     }
 }
 
-//localStorage -- registro fecha de entrada
+/**
+ * Registro de entradas de usuarios mediante localStorage (HISTORIAL)
+ * @param {*} nick 
+ */
 function userDateRecord(nick) {
     let recordStorage = localStorage.getItem("record"); //obtenemos el historial de entradas
     let records;
     if (recordStorage == null) { //no existe un historial previo
         records = []; //lo creamos
-    }else{
-        records=JSON.parse(recordStorage); //Si existe, lo obtenemos del localStorage haciendo
+    } else {
+        records = JSON.parse(recordStorage); //Si existe, lo obtenemos del localStorage haciendo
         //la operación inversa al JSON.strongify, ya que en el local se ha almacenado en JSON 
     }
     let userRecord = {

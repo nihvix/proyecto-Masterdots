@@ -15,8 +15,8 @@ const error = document.getElementById("error");
 /* ==============================
             ERRORES
    ==============================*/
-if(sessionStorage.getItem("error")!=null){
-    error.innerText=sessionStorage.getItem("error"); //mostrar mensaje de error
+if (sessionStorage.getItem("error") != null) {
+    error.innerText = sessionStorage.getItem("error"); //mostrar mensaje de error
     sessionStorage.removeItem("error"); //para que al recargar no vuelva a aparecer el error
 }
 
@@ -33,6 +33,12 @@ dataGeolocation();
 /* ==============================
             FUNCIONES
    ==============================*/
+/**
+ * Función que realiza las comprobaciones en los datos del formulario al hacer
+ * click sobre el botón para jugar
+ * @param {Event} event 
+ * @returns 
+ */
 function checkForm(event) {
     if (nickInput.value.length == 0) {
         event.preventDefault();
