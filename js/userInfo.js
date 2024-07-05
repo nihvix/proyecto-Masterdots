@@ -4,16 +4,23 @@
 
 //Variable global para almacenar  el nick
 var nick;
+var size;
+var email;
+var geolocationTxT;
 
 //Nick será un objeto con la información del input nick
-function userData(nickInput) {
-
+function userData(nickInput, size, email) {
     sessionStorage.setItem("nick", nickInput.value); //"nick" será la clave usada para recuperar la info
+    sessionStorage.setItem("size", size.value);
+    sessionStorage.setItem("email", email.value);
+    sessionStorage.setItem("geolocation", geolocationTxT.value); //Al final de la carga, estará disponible
+    // el txt pq los datos de geolocalización se habían almacenado antes
 }
 
 function getUserData() {
     nick = sessionStorage.getItem("nick");
-    console.log(nick);
+    size = sessionStorage.getItem("size");
+    email = sessionStorage.getItem("email");
 }
 
 //Función para comprobar que nos meten los datos en el sessionStorage
@@ -24,6 +31,23 @@ function checkUserData() {
         return false;
     }
     return true;
+}
+
+//petición geolocalización
+function dataGeolocation(){
+    if(!navigator.geolocation){
+        geolocationTxT="Web browser does NOT support Geolocation API";
+    }else{
+        //A partir de aquí se empieza a escribir la geolocalización
+        navigator.geolocation.getCurrentPosition(
+            //Si se consigue correctamente: CALLBACKS(retorno de una petición)
+            (position)=>{geolocationTxT="Latitude: "+position.coords.latitude+", longitude: "+position.coords.longitude;},
+
+            //Error
+            ()=>{geolocationTxT="Geolocation couldn't be done correctly.";}
+        )
+
+    }
 }
 
 //localStorage -- registro fecha de entrada

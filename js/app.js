@@ -7,6 +7,7 @@
    ==================================================*/
 const nickInput = document.getElementById("nick");
 const sizeInput = document.getElementById("size");
+const emailInput = document.getElementById("email");
 const formInput = document.getElementById("inputForm");
 const error = document.getElementById("error");
 
@@ -23,6 +24,11 @@ if(sessionStorage.getItem("error")!=null){
             EVENTOS
    ==============================*/
 formInput.addEventListener('submit', checkForm);
+
+/* ========================================
+                GEOLOCALIZACIÓN
+   ========================================*/
+dataGeolocation();
 
 /* ==============================
             FUNCIONES
@@ -43,6 +49,6 @@ function checkForm(event) {
         return false;
     }
     //En este punto la información ya es correcta, por lo que ya podemos almacenarla en la sesión
-    userData(nickInput);
+    userData(nickInput, sizeInput, emailInput);
     return true;
 }
