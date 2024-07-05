@@ -10,6 +10,15 @@ const sizeInput = document.getElementById("size");
 const formInput = document.getElementById("inputForm");
 const error = document.getElementById("error");
 
+
+/* ==============================
+            ERRORES
+   ==============================*/
+if(sessionStorage.getItem("error")!=null){
+    error.innerText=sessionStorage.getItem("error"); //mostrar mensaje de error
+    sessionStorage.removeItem("error"); //para que al recargar no vuelva a aparecer el error
+}
+
 /* ==============================
             EVENTOS
    ==============================*/
@@ -33,5 +42,7 @@ function checkForm(event) {
         error.innerText = "A size must be selected";
         return false;
     }
+    //En este punto la información ya es correcta, por lo que ya podemos almacenarla en la sesión
+    userData(nickInput);
     return true;
 }
