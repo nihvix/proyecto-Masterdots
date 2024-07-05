@@ -93,7 +93,14 @@ select {
     color: #ced4da;
     /*Para que cuando se abra el menú la opción por defecto se vea gris*/
 }
-::placeholder{
+
+::placeholder {
     color: #ced4da;
     font-weight: 500;
+}
+
+.requiredInput {
+    color: #b7bcc1;
+    font-size: 14px;
+    font-weight: 300;
 }

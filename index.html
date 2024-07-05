@@ -30,7 +30,7 @@
         <form action="#" id="inputForm">
             <!--Bloque del nombre-->
             <div class="itemform">
-                <label for="nick">Enter your name: </label>
+                <label for="nick">Enter your name:* </label>
                 <input type="text" name="nick" value="@" id="nicka" readonly>
                 <!--readonly para que sea solo lectura y sólo se escriba en el input principal-->
                 <input type="text" name="nick" id="nick" required minlength="2">
@@ -43,13 +43,16 @@
             </div>
             <!--Bloque de formulario del tamaño-->
             <div class="itemform">
-                <label for="size">Size of the game: </label>
+                <label for="size">Size of the game:* </label>
                 <select name="size" id="size" required>
                     <option value="0">--Please, select a size--</option>
                     <option value="1">4x4</option>
                     <option value="2">5x5</option>
                     <option value="3">6x6</option>
                 </select>
+            </div>
+            <div class="requiredInput">
+                <p>*Required</p>
             </div>
             <!--Bloque de botón de envío-->
             <div class="itemform">
@@ -65,6 +68,8 @@
 
     <!--ENLACE AL JS-->
     <script defer src="js/app.js"></script>
+    <script defer src="js/userInfo.js"></script>
+
 </body>
 
 </html>
