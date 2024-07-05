@@ -5,30 +5,11 @@
 /* ==================================================
             INICIALIZACIÓN VARIABLES, OBJETOS, DOM
    ==================================================*/
-const nickInput = document.getElementById("nick");
-const sizeInput = document.getElementById("size");
-const emailInput = document.getElementById("email");
-const formInput = document.getElementById("inputForm");
-const error = document.getElementById("error");
-
-
-/* ==============================
-            ERRORES
-   ==============================*/
-if (sessionStorage.getItem("error") != null) {
-    error.innerText = sessionStorage.getItem("error"); //mostrar mensaje de error
-    sessionStorage.removeItem("error"); //para que al recargar no vuelva a aparecer el error
-}
-
-/* ==============================
-            EVENTOS
-   ==============================*/
-formInput.addEventListener('submit', checkForm);
-
-/* ========================================
-                GEOLOCALIZACIÓN
-   ========================================*/
-dataGeolocation();
+var nickInput;
+var sizeInput;
+var emailInput;
+var formInput;
+var error;
 
 /* ==============================
             FUNCIONES
@@ -58,3 +39,34 @@ function checkForm(event) {
     userData(nickInput, sizeInput, emailInput);
     return true;
 }
+
+/**
+ * Función que realiza la carga de objetos del DOM, comprobaciones y eventos del formulario
+ */
+function DOMLoaded() {
+    //Se cargan las variables
+    nickInput = document.getElementById("nick");
+    sizeInput = document.getElementById("size");
+    emailInput = document.getElementById("email");
+    formInput = document.getElementById("inputForm");
+    error = document.getElementById("error");
+
+    //Se comprueba si hay algún error, ya que ahora sí estará cargado
+    if (sessionStorage.getItem("error") != null) {
+        error.innerText = sessionStorage.getItem("error"); //mostrar mensaje de error
+        sessionStorage.removeItem("error"); //para que al recargar no vuelva a aparecer el error
+    }
+
+    //Se comprueba el formulario
+    formInput.addEventListener('submit', checkForm);
+}
+
+/* ==============================
+            EVENTOS
+   ==============================*/
+document.addEventListener('DOMContentLoaded', DOMLoaded);
+
+/* ========================================
+                GEOLOCALIZACIÓN
+   ========================================*/
+dataGeolocation();
