@@ -10,6 +10,9 @@ var sizeInput;
 var emailInput;
 var formInput;
 var error;
+var avatarItems;
+var itemImg;
+var avatarContainer; //Elemento donde vamos a dejar el avatar al soltarlo
 
 /* ==============================
             FUNCIONES
@@ -41,6 +44,22 @@ function checkForm(event) {
 }
 
 /**
+ * Función que aplica el evento de movimiento sobre un avatar para el Drag and Drop
+ * @param {Event} event 
+ */
+function imageMoving(event) {
+    itemImg = event.target; //Selecciona justo la imagen sobre la que se está 
+
+}
+/**
+ * Cambiamos la imagen del contenedor al avatar seleccionado en el Drag an Drop
+ * @param {Event} event 
+ */
+function changeImg(event) {
+    avatarContainer.src = itemImg.src;
+}
+
+/**
  * Función que realiza la carga de objetos del DOM, comprobaciones y eventos del formulario
  */
 function DOMLoaded() {
@@ -59,11 +78,22 @@ function DOMLoaded() {
 
     //Se comprueba el formulario
     formInput.addEventListener('submit', checkForm);
+
+    //Eventos del Drag and Drop
+    //Para no tener que añadir el evento a cada avatar por separado (6), utilizamos una clase común "avatarImgItem"
+    avatarItems = document.getElementsByClassName("avatarImgItem");
+    for (let item of avatarItems) {
+        item.addEventListener('dragstart', imageMoving);
+    }
+    //Contenedor para soltar el avatar
+    avatarContainer = document.getElementById("avatarImg");
+    avatarContainer.addEventListener('dragover', e => { e.preventDefault(); });
+    avatarContainer.addEventListener('drop', changeImg);
 }
 
-/* ==============================
-            EVENTOS
-   ==============================*/
+/* ===================================
+            EVENTO PRINCIPAL
+   ===================================*/
 document.addEventListener('DOMContentLoaded', DOMLoaded);
 
 /* ========================================
