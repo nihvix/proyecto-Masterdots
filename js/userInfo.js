@@ -9,6 +9,7 @@ var nick;
 var size;
 var email;
 var geolocationTxT;
+var avatarImg;
 
 /* ==============================
             FUNCIONES
@@ -20,11 +21,12 @@ var geolocationTxT;
  * @param {HTML Element} size 
  * @param {HTML Element} email 
  */
-function userData(nickInput, size, email) {
+function userData(nickInput, size, email, avatarContainer) {
     sessionStorage.setItem("nick", nickInput.value); //"nick" será la clave usada para recuperar la info
     sessionStorage.setItem("size", size.value);
     sessionStorage.setItem("email", email.value);
     sessionStorage.setItem("geolocation", geolocationTxT.value); //Al final de la carga, estará disponible
+    sessionStorage.setItem("avatarImg", avatarContainer.src); //Al final de la carga, estará disponible
     // el txt pq los datos de geolocalización se habían almacenado antes
 }
 
@@ -35,6 +37,7 @@ function getUserData() {
     nick = sessionStorage.getItem("nick");
     size = sessionStorage.getItem("size");
     email = sessionStorage.getItem("email");
+    avatarImg = sessionStorage.getItem("avatarImg");
 }
 
 /**

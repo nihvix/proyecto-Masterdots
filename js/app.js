@@ -39,7 +39,7 @@ function checkForm(event) {
         return false;
     }
     //En este punto la información ya es correcta, por lo que ya podemos almacenarla en la sesión
-    userData(nickInput, sizeInput, emailInput);
+    userData(nickInput, sizeInput, emailInput, avatarContainer);
     return true;
 }
 
