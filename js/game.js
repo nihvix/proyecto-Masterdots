@@ -1,6 +1,10 @@
 /* ==================================================
                     CÓDIGO JUEGO    
    ==================================================*/
+/* ==========================
+            VARIABLES
+   ==========================*/
+var markInit = false;
 
 /* ==========================
             FUNCIONES
@@ -41,11 +45,11 @@ function drawPanel() {
     }
     document.getElementById("game").innerHTML = items;
 }
-
 /**
  * Función donde se realiza el marcado de fichas
+ * @param {Event} event 
  */
-function startMarking(event) {
+function marking(event) {
     let item = event.target; //elemento hijo
     let containerItem = event.target.parentElement; //Elemento padre
     if (item.classList.contains("red")) { //Comprobamos si el elemento hijo es de color rojo
@@ -53,6 +57,36 @@ function startMarking(event) {
     } else {
         containerItem.classList.add("green");
     }
+    if (!markInit) { markInit = true; }
+}
+
+/**
+ * Función que comienza el marcado de fichas
+ * Cuando se hace click en el item
+ * @param {Event} event 
+ */
+function startMarking(event) {
+    marking(event);
+}
+
+/**
+ * Función que continúa el marcado de fichas, uniéndolas
+ * Cuando se pasa por encima mientras se hace click
+ * @param {Event} event 
+ */
+function keepMarking(event) {
+    if (markInit) { //SE sigue marcando SOLO si se ha empezado a marcar
+        marking(event);
+    }
+}
+
+/**
+ * Función que finaliza el marcado de fichas
+ * Cuamdo no se está clickando el item
+ * @param {Event} event 
+ */
+function finishMark(){
+    markInit=false;
 }
 
 /**
@@ -60,10 +94,11 @@ function startMarking(event) {
  */
 function gameEvents() {
     const items = document.getElementsByClassName("item"); //Obtenemos todos los círculos del juego
-
     for (let item of items) {
         item.addEventListener('mousedown', startMarking);
+        item.addEventListener('mouseover', keepMarking);
     }
+    document.addEventListener('mouseup', finishMark);
 }
 
 /* =======================================
