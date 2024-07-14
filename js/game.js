@@ -4,7 +4,12 @@
 /* ==========================
             VARIABLES
    ==========================*/
-var markInit = false;
+var item;
+var nextId;
+var markedInit = false;
+var adjacentPoints = [];
+var panelSize;
+var markedClass;
 
 /* ==========================
             FUNCIONES
@@ -24,6 +29,7 @@ function getRandomInt(max) {
 function fillUserForm() {
     document.getElementById("nick").value = nick;
     document.getElementById("avatarImg").src = avatarImg; //variable de userInfo que almacena el avatar
+    panelSize = parseInt(size);
 }
 
 /**
@@ -37,27 +43,40 @@ function drawPanel() {
     let items = "";
     let color = ["red", "green"];
     let colorRandom = 0;
-    for (let index = 0; index < sizeInt * sizeInt; index++) {
+    for (let index = 0; index < sizeInt * sizeInt; index++) { //El index lo utlizaremos para el cálculo de los puntos adyacentes luego
         if (index % 2 > 0) {
             colorRandom = getRandomInt(2);
         }
-        items += `<div class="containerItem"><div class="item ${color[colorRandom]}"></div></div>`; //Comillas evaluativas para poder meter variable
+        items += `<div class="containerItem"><div id="${index}" class="item ${color[colorRandom]}"></div></div>`; //Comillas evaluativas para poder meter variable
     }
     document.getElementById("game").innerHTML = items;
 }
+
 /**
- * Función donde se realiza el marcado de fichas
- * @param {Event} event 
+ * Función que realiza el cálculo de los puntos adyacentes
+ * @param {int} markedId 
  */
-function marking(event) {
-    let item = event.target; //elemento hijo
-    let containerItem = event.target.parentElement; //Elemento padre
-    if (item.classList.contains("red")) { //Comprobamos si el elemento hijo es de color rojo
-        containerItem.classList.add("red"); //Cambiamos la clase padre a rojo, para que se ponga como color de fondo del contenedor
-    } else {
-        containerItem.classList.add("green");
+function adjacentCalculation(markedId) {
+    adjacentPoints = [];
+    //Adyacente superior
+    if ((markedId - panelSize) >= 0) {
+        adjacentPoints.push(markedId - panelSize);
     }
-    if (!markInit) { markInit = true; }
+    //Adyacente inferior
+    if ((markedId + panelSize) < (panelSize * panelSize)) {
+        adjacentPoints.push(markedId + panelSize);
+    }
+    //Adyacente izquierda
+    if ((markedId % panelSize) > 0) {
+        adjacentPoints.push(markedId - 1);
+    }
+    //Adyacente derecho
+    if (((markedId + 1) % panelSize) > 0) {
+        adjacentPoints.push(markedId + 1);
+    }
+    for (let i = 0; i < adjacentPoints.length; i++) {
+        console.log(adjacentPoints[i]);
+    }
 }
 
 /**
@@ -66,7 +85,18 @@ function marking(event) {
  * @param {Event} event 
  */
 function startMarking(event) {
-    marking(event);
+    item = event.target;
+    let containerItem = event.target.parentElement; //Elemento padre
+    if (item.classList.contains("red")) { //Comprobamos si el elemento hijo es de color rojo
+        containerItem.classList.add("red"); //Cambiamos la clase padre a rojo, para que se ponga como color de fondo del contenedor
+        markedClass = "red";
+    } else {
+        containerItem.classList.add("green");
+        markedClass = "green";
+    }
+    if (!markedInit) { markedInit = true; }
+    //Test
+    adjacentCalculation(parseInt(item.id));
 }
 
 /**
@@ -75,8 +105,19 @@ function startMarking(event) {
  * @param {Event} event 
  */
 function keepMarking(event) {
-    if (markInit) { //SE sigue marcando SOLO si se ha empezado a marcar
-        marking(event);
+    item = event.target;
+    nextId = parseInt(item.id);
+    if (markedInit) { //Se sigue marcando SOLO si se ha empezado a marcar
+        //Comprobamos si el próximo elemento es adyacente
+        if (adjacentPoints.includes(nextId) && item.classList.contains(markedClass)) {
+            let containerItem = event.target.parentElement; //Elemento padre
+            if (item.classList.contains("red")) {
+                containerItem.classList.add("red");
+            } else {
+                containerItem.classList.add("green");
+            }
+            adjacentCalculation(parseInt(item.id));
+        }
     }
 }
 
@@ -85,9 +126,10 @@ function keepMarking(event) {
  * Cuamdo no se está clickando el item
  * @param {Event} event 
  */
-function finishMark(){
-    markInit=false;
+function finishMark() {
+    markedInit = false;
 }
+
 
 /**
  * Función que establece los eventos de ratón durante la partida
