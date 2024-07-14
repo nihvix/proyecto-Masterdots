@@ -10,6 +10,7 @@ var markedInit = false;
 var adjacentPoints = [];
 var panelSize;
 var markedClass;
+var markedPoints = [];
 
 /* ==========================
             FUNCIONES
@@ -95,7 +96,7 @@ function startMarking(event) {
         markedClass = "green";
     }
     if (!markedInit) { markedInit = true; }
-    //Test
+    markedPoints.push(parseInt(item.id));
     adjacentCalculation(parseInt(item.id));
 }
 
@@ -116,6 +117,7 @@ function keepMarking(event) {
             } else {
                 containerItem.classList.add("green");
             }
+            markedPoints.push(parseInt(item.id));
             adjacentCalculation(parseInt(item.id));
         }
     }
@@ -128,6 +130,18 @@ function keepMarking(event) {
  */
 function finishMark() {
     markedInit = false;
+    //Modificamos los elementos marcados una vez que dejamos de arrastar el ratón
+    for (let i = 0; i < markedPoints.length; i++) {
+        //Capturar el objeto
+        let markedItem = document.getElementById(markedPoints[i]);
+        //Eliminamos el class marcado de todos los padres
+        markedItem.parentElement.classList.remove(markedClass);
+        //Cambiamos el color de los objetos hijos de forma aleatoria
+        let color = ["red", "green"];
+        let colorRandom = getRandomInt(2);
+        markedItem.classList.remove(markedClass);
+        markedItem.classList.add(color[colorRandom]);
+    }
 }
 
 
