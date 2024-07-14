@@ -130,6 +130,11 @@ function keepMarking(event) {
  */
 function finishMark() {
     markedInit = false;
+    adjacentPoints = [];
+    const scoreInput = document.getElementById("score");
+    if (markedPoints.length > 1) {
+        scoreInput.value = parseInt(scoreInput.value) + markedPoints.length;
+    }
     //Modificamos los elementos marcados una vez que dejamos de arrastar el ratón
     for (let i = 0; i < markedPoints.length; i++) {
         //Capturar el objeto
@@ -142,6 +147,7 @@ function finishMark() {
         markedItem.classList.remove(markedClass);
         markedItem.classList.add(color[colorRandom]);
     }
+    markedPoints = [];
 }
 
 
