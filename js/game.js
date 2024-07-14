@@ -42,6 +42,30 @@ function drawPanel() {
     document.getElementById("game").innerHTML = items;
 }
 
+/**
+ * Función donde se realiza el marcado de fichas
+ */
+function startMarking(event) {
+    let item = event.target; //elemento hijo
+    let containerItem = event.target.parentElement; //Elemento padre
+    if (item.classList.contains("red")) { //Comprobamos si el elemento hijo es de color rojo
+        containerItem.classList.add("red"); //Cambiamos la clase padre a rojo, para que se ponga como color de fondo del contenedor
+    } else {
+        containerItem.classList.add("green");
+    }
+}
+
+/**
+ * Función que establece los eventos de ratón durante la partida
+ */
+function gameEvents() {
+    const items = document.getElementsByClassName("item"); //Obtenemos todos los círculos del juego
+
+    for (let item of items) {
+        item.addEventListener('mousedown', startMarking);
+    }
+}
+
 /* =======================================
             LLAMADAS A FUNCIONES
    =======================================*/
@@ -57,3 +81,5 @@ if (!checkUserData()) {
 fillUserForm();
 //Pintamos el panel de juego
 drawPanel();
+//Establecemos los eventos para el movimiento del ratón
+gameEvents();
