@@ -153,8 +153,6 @@ function finishMark() {
 
 /**
  * Función que realiza la cuenta atrás del juego
- * @param {*} countdown 
- * @param {*} mil 
  */
 function countdown() {
     let timeLeft = parseInt(document.getElementById("time").value) - 1;
@@ -168,6 +166,11 @@ function countdown() {
             item.removeEventListener('mouseover', keepMarking);
         }
         document.removeEventListener('mouseup', finishMark);
+        //Cambiar z-index de los paneles (pantalla PLAY AGAIN)
+        document.getElementById("finishedGame").style.zIndex = "2";
+        document.getElementById("game").style.zIndex = "1";
+        document.getElementById("newGame").addEventListener("click", 
+            (e) => { location.reload() }); //Se recarga la misma página para empezar una nueva partida
     }
 }
 
