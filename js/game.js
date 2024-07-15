@@ -11,6 +11,7 @@ var adjacentPoints = [];
 var panelSize;
 var markedClass;
 var markedPoints = [];
+var idInterval;
 
 /* ==========================
             FUNCIONES
@@ -150,6 +151,25 @@ function finishMark() {
     markedPoints = [];
 }
 
+/**
+ * Función que realiza la cuenta atrás del juego
+ * @param {*} countdown 
+ * @param {*} mil 
+ */
+function countdown() {
+    let timeLeft = parseInt(document.getElementById("time").value) - 1;
+    document.getElementById("time").value = timeLeft;
+    if (timeLeft == 0) {
+        clearInterval(idInterval);
+        //Finalizamos todos los eventos
+        const items = document.getElementsByClassName("item");
+        for (let item of items) {
+            item.removeEventListener('mousedown', startMarking);
+            item.removeEventListener('mouseover', keepMarking);
+        }
+        document.removeEventListener('mouseup', finishMark);
+    }
+}
 
 /**
  * Función que establece los eventos de ratón durante la partida
@@ -161,6 +181,8 @@ function gameEvents() {
         item.addEventListener('mouseover', keepMarking);
     }
     document.addEventListener('mouseup', finishMark);
+    //Cuenta atrás
+    idInterval = setInterval(countdown, 1000);
 }
 
 /* =======================================
