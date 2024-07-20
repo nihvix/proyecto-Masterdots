@@ -125,6 +125,10 @@ img {
     border-radius: 5px 5px 0px 0px;
 }
 
+.finishedGameColor{
+    background-color: #263238;
+    transition: background-color 0.4s;
+}
 
 #finishedGame {
     z-index: 1;
@@ -136,8 +140,6 @@ img {
     border-radius: 5px 5px 0px 0px;
     width: 500px;
     height: 400px;
-    background-color: #263238;
-    transition: background-color 0.4s;
 }
 
 #finishedGame button {

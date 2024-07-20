@@ -167,6 +167,7 @@ function countdown() {
         }
         document.removeEventListener('mouseup', finishMark);
         //Cambiar z-index de los paneles (pantalla PLAY AGAIN)
+        document.getElementById("finishedGame").classList.add("finishedGameColor"); //Añadimos la clase de color para las transiciones de la última pantalla
         document.getElementById("finishedGame").style.zIndex = "2";
         document.getElementById("game").style.zIndex = "1";
         document.getElementById("newGame").addEventListener("click", 
